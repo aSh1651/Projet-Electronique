@@ -1,7 +1,7 @@
 
 \section{Introduction}
 
-Le projet consiste à faire avancer selon les directives d'une manette Radiolink le chariot qui est composé de deux roues d'hoverboard et deux autres roues.
+Le projet consiste à faire avancer selon les directives d'une manette Radiolink le chariot qui est composé de deux roues d'hoverboard et de deux autres roues.
     
 
 
