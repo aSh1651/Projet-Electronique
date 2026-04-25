@@ -1,0 +1,54 @@
+
+\section{Introduction}
+
+Le projet consiste à faire avancer selon les directives d'une manette Radiolink le chariot qui est composé de deux roues d'hoverboard et deux autres roues.
+    
+
+
+
+ \ding{113} option 1
+\section{Etapes du projet:Objectives à remplir}
+
+Le matériel fourni par l'encadrant était une manette R8EF ainsi que le récepteur associé. Le récepteur possède au total 8 canaux et afin de nous simplifier la tâche, l'encadrant nous a invité à travaillé avec le canal Sbus qui fonctionne en multiplexage: les 16 canaux sont transmis via ce canal. 
+
+\subsection{Inverseur de signal Sbus}
+Le protocole de transmission de donnée Sbus transmet au total 25 trames de 1 octet, soit 16 trames(=16 canaux) de 11 bits, avec la première trame =0x0F la 24 une trame des flags (Failsafe et Frame Lost) et la 25ème =0x00. Soit un total de 200 bits.
+
+Toutefois les trames trasmises sont des trames inversées, pour pouvoir les étudier il faut dans un premier temps inverser cette trame. On s'intéresse donc dans un premier temps à l'élaboration d'un inverseur de Sbus.
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.5\linewidth]{image.png}
+    \caption{inverseur de Sbus}
+\end{figure}
+
+
+Après avoir conçu et réalisé la carte PCB dédiée à cette fonction, nous avons procédé aux premiers tests matériels suivants:
+\begin{itemize}
+\item Vérification à l'oscilloscope
+\item Vérification à l'aide
+ \end{itemize}
+
+\href{https://www.overleaf.com/learn}{help library}, or head to our plans page to \href{https://www.overleaf.com/user/subscription/plans}{choose your plan}.
+\subsection{Décoder les canaux du récepteur}
+
+On souhaite par suite déterminer quel mouvement de la manette est encodée par quel canal. Pour cela on crée un nouveau projet ioc de la structure suivante:
+
+Projet STM32/
+
+\ding{96} Src/
+
+
+        main.c
+
+        
+        sbus.h
+        
+\ding{96} Inc.h/
+
+
+        main.h
+
+        
+        sbus.H
+
+On code une première fonction decode_sbus qui va stocker,à partir du flux de données envoyés par le sbus, dans un canal sa trame associé.
