@@ -92,11 +92,11 @@ int main(void)
   {
 
     /* USER CODE END WHILE */
-	  if (HAL_UART_Receive(&huart3, raw_buffer, sizeof(raw_buffer), 100) == HAL_OK) {
+	  if (HAL_UART_Receive(&huart3, raw_buffer, sizeof(raw_buffer), 10) == HAL_OK) {
 	              decode_sbus(raw_buffer, &trames);
 
 	      //printf("\r"); // Revient au début de la ligne pour ne pas polluer l'écran
-	      for (int i = 0; i < 8; i++) {
+	      for (int i = 0; i < 16; i++) {
 	    	  printf("CH%d:%4d | \r\n", i + 1, trames.channels[i]);
 	      } printf("\r\n");
 	  }
