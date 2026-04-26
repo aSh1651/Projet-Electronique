@@ -3,7 +3,7 @@
 //const
 void decode_sbus(uint8_t *buffer, SbusFrame *sbus) {
     // Vérification du Header (0x0F) et du Footer (0x00)
-    if (buffer[0] != 0x0F) return;
+    if (buffer[0] != 0x0F || buffer[24] != 0x00) return;
 
     // Décodage des 11 bits par canal via décalage de bits
     sbus->channels[0]  = ((buffer[1]    | buffer[2] << 8)                          & 0x07FF);
