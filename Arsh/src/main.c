@@ -25,10 +25,10 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+UART_HandleTypeDef huart2;
 UART_HandleTypeDef huart3;
 uint8_t raw_buffer[25];
 SbusFrame  trames;
-
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
