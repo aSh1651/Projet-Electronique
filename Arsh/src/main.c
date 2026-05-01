@@ -79,9 +79,10 @@ int main(void)
 
   /* USER CODE END SysInit */
 
-  /* Initialize all configured peripherals */
+ /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_USART3_UART_Init();
+  MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
@@ -91,14 +92,17 @@ int main(void)
   while (1)
   {
 
-    /* USER CODE END WHILE */
 	  if (HAL_UART_Receive(&huart3, raw_buffer, sizeof(raw_buffer), 10) == HAL_OK) {
-	              decode_sbus(raw_buffer, &trames);
+	 	              decode_sbus(raw_buffer, &trames);
 
-	      //printf("\r"); // Revient au début de la ligne pour ne pas polluer l'écran
-	      for (int i = 0; i < 16; i++) {
-	    	  printf("CH%d:%4d | \r\n", i + 1, trames.channels[i]);
-	      } printf("\r\n");
+	 	      //printf("\r"); // Revient au début de la ligne pour ne pas polluer l'écran
+	 	      for (int i = 0; i < 16; i++) {
+	 	    	  printf("CH%d:%4d | \r\n", i + 1, trames.channels[i]);
+	 	      } printf("\r\n");
+	  }
+	  else{
+		  printf("non reçu\r\n");
+		  HAL_Delay(1000);
 	  }
     /* USER CODE BEGIN 3 */
   }
