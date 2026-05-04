@@ -1,20 +1,15 @@
-/*
- * sbus.h
- *
- *  Created on: Apr 13, 2026
- *      Author: asmab
- */
-
+#include <stdint.h>
+#include "main.h"
 #ifndef INC_SBUS_H_
 #define INC_SBUS_H_
+typedef struct {
+    uint16_t channels[16];
+    uint8_t frame_lost;
+    uint8_t failsafe;
+} SbusFrame;
 
-#include "main.h"
-#include <stdint.h>
 
-extern uint16_t channels[16];
-
-void decode_sbus(uint8_t *buf);
-uint8_t read_sbus_frame(UART_HandleTypeDef *huart, uint8_t *buf);
+void decode_sbus(uint8_t *buffer, SbusFrame *sbus);
+//void print_channels();
 
 #endif /* INC_SBUS_H_ */
-
