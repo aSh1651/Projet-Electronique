@@ -34,4 +34,19 @@ void decode_sbus(uint8_t *buffer, SbusFrame *sbus) {
     sbus->failsafe   = (buffer[23] & 0x08);
 }
 
+int ch_b= [1084, 957, 956, 1030];
+ch_min=200;
+ch_max=2000;
+
+int pwm_min = 1000;
+int pwm_max = 60000;
+
+
+int convertir_sbus_to_pwm(int i, ){
+  return ((sbus_value[i] - ch_min) *( pwm_max- pwm_min ))/  
+                    (ch_max - ch_min) + 
+                   pwm_min;
+}
+  
+
 
