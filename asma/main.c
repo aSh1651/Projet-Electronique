@@ -68,15 +68,11 @@ int main(void)
 		uint8_t byteRecu = 0;
 
 		if (HAL_UART_Receive(&huart3, &byteRecu, 1, 1000) == HAL_OK) {
-
 			printf("REC: %02X ", byteRecu);
-
-			if (byteRecu == 0x0F)
-			{
+			if (byteRecu == 0x0F){
 				sbus_buffer[0] = byteRecu;
-
 				if (HAL_UART_Receive(&huart3, &sbus_buffer[1], 24, 20) == HAL_OK) {
-
+					decode_sbus(sbus_buffer,sbus_channels);// et on enlève les lignes suivantes:
 					sbus_channels[0]  = ((sbus_buffer[1]      | sbus_buffer[2]  << 8) & 0x07FF);
 					sbus_channels[1]  = ((sbus_buffer[2] >> 3 | sbus_buffer[3]  << 5) & 0x07FF);
 					sbus_channels[2]  = ((sbus_buffer[3] >> 6 | sbus_buffer[4]  << 2 | sbus_buffer[5]  << 10) & 0x07FF);
@@ -113,7 +109,6 @@ int main(void)
 		}
 
 		/* USER CODE END WHILE */
-
 		/* USER CODE BEGIN 3 */
 	}
 	/* USER CODE END 3 */
