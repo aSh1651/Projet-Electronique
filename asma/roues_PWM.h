@@ -1,6 +1,7 @@
 #ifndef SRC_ROUE_PWM_H_
 #define SRC_ROUE_PWM_H_
-
+#include <stdio.h>
+#include "main.h"
 void setup_roue_PWM();
 void loop_roue_PWM();
 int ch_b[4]= {1084, 957, 956, 1030};
