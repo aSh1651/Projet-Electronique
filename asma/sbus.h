@@ -8,8 +8,7 @@ typedef struct {
     uint8_t failsafe;
 } SbusFrame;
 
-
-void decode_sbus(uint8_t *buffer, SbusFrame *sbus);
+void decode_sbus();
 //void print_channels();
 
 #endif /* INC_SBUS_H_ */
