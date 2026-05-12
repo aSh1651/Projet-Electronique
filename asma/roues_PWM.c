@@ -24,7 +24,7 @@ void convertir_sbus_to_pwm(int i, uint16_t* sbus_channel ){
 	// securité pour éviter de sortir de la plage de donnée
 	if (sbus_valeur < ch_min) sbus_valeur = ch_min;
 	if (sbus_valeur > ch_max) sbus_valeur = ch_max;
-	
+	// distinction des cas selon que valeur sbus soit sup ou inferieur à la valeur neutre
 	if (sbus_valeur > neutre) {
 	        // Zone Haute : du neutre (0%) vers le max (100%)
 	        // Formule : (Valeur - Depart) * (Arrivée_Max / Plage_SBUS)
