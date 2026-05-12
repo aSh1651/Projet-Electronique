@@ -17,3 +17,10 @@ void loop_roue_PWM(){
 			printf("test_boucle2");
 		}
 }
+void convertir_sbus_to_pwm(int i, uint8_t* sbus_buffer ){
+  int pmw= ((sbus_buffer[i] - ch_min) *( pwm_max- pwm_min ))/
+                    (ch_max - ch_min) +
+                   pwm_min;
+  TIM1->CCR1 = pmw;
+  printf("ccr%d=|\r\n ",pmw );
+}
