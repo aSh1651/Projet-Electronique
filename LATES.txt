@@ -52,3 +52,20 @@ Projet STM32/
         sbus.H
 
 On code une première fonction decode_sbus qui va stocker,à partir du flux de données envoyés par le sbus, dans un canal sa trame associé.
+\section{Démarche d’éco-conception}
+
+Dans ce projet, plusieurs choix matériels et logiciels ont été réalisés afin de limiter l’impact environnemental du système conçu.
+
+Tout d’abord, le chariot est constitué en partie d’un ancien hoverboard récupéré. Les deux moteurs-roues utilisés proviennent directement de cet équipement. Cette réutilisation permet d’éviter l’achat de nouveaux moteurs ainsi que la production de déchets électroniques supplémentaires. Le projet s’inscrit donc dans une logique de recyclage et de valorisation d’un matériel existant.
+
+De plus, la carte PCB de l’inverseur Sbus a été fabriquée directement dans le laboratoire de l’école. Ce choix évite une fabrication industrielle externe ainsi que le transport du PCB, souvent réalisé par livraison. Cela permet donc de réduire les émissions de CO$_2$ liées à la logistique et à l’expédition.
+
+Concernant l’inverseur Sbus, nous avons choisi d’utiliser un transistor BC337 déjà disponible au laboratoire afin de réaliser l’inversion du signal. Une inversion logicielle était envisageable, mais l’utilisation d’un composant déjà présent à l’école permettait d’éviter l’achat de nouveaux composants électroniques. Cette approche limite également les emballages et le transport associés à une commande supplémentaire.
+
+Le choix des résistances du montage a également été réalisé de manière à limiter le courant circulant dans l’étage d’inversion. Des résistances trop faibles auraient entraîné une augmentation du courant consommé ainsi que des pertes énergétiques plus importantes par effet Joule. Les valeurs retenues permettent donc d’obtenir une inversion fiable du signal tout en limitant la consommation électrique du circuit.
+
+La conception logicielle exploite principalement les périphériques matériels déjà intégrés au microcontrôleur STM32L476RG. L’USART3 est utilisé pour la réception du protocole Sbus tandis que le timer TIM1 génère directement les signaux PWM permettant de contrôler les moteurs. Cette approche permet de limiter les traitements logiciels complexes et d’utiliser efficacement les ressources matérielles déjà disponibles sur la carte Nucleo.
+
+Enfin, lorsque les joysticks de la télécommande sont au repos, le programme coupe le signal PWM envoyé aux moteurs en plaçant les registres CCR1 et CCR2 à zéro. Les moteurs ne sont donc alimentés que lorsqu’un déplacement est réellement demandé, ce qui permet de réduire la consommation énergétique globale du système.
+
+L’ensemble de ces choix montre que le projet ne se limite pas uniquement à la réalisation fonctionnelle du chariot télécommandé, mais intègre également une réflexion autour de la réutilisation des ressources, de la limitation des déchets électroniques et de l’optimisation énergétique du système embarqué.
